@@ -119,21 +119,6 @@ Vite проксирует `/api` на `http://127.0.0.1:8001` (см. `frontend/v
 | `JWT_SECRET` | — | Секрет для JWT (длинная случайная строка) |
 | `JWT_EXPIRES_MINUTES` | `10080` | Срок жизни токена (7 дней) |
 
-Пример:
-
-```env
-DATA_SOURCE=sheets
-GOOGLE_SHEET_ID=1USfU_dHU0dODWiPIjItoEicBzD19gFZPkU-E-prQ3vs
-GOOGLE_SHEET_GID=581878771
-GOOGLE_SHEET_NAME=БКВ 2026
-GOOGLE_CREDENTIALS_PATH=divine-descent-499906-j5-e92eac489326.json
-SHEETS_POLL_INTERVAL=30
-PORT=8001
-
-MONGODB_URI=mongodb+srv://USER:PASSWORD@cluster0.example.mongodb.net/kazakhtelecom_dashboard?retryWrites=true&w=majority
-JWT_SECRET=your-long-random-secret
-```
-
 ---
 
 ## API
