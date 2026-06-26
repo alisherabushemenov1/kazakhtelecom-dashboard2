@@ -3,10 +3,12 @@ from __future__ import annotations
 import asyncio
 import threading
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Response, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from jose import JWTError, jwt
 
 from .auth import get_current_user
@@ -172,6 +174,31 @@ async def websocket_endpoint(websocket: WebSocket):
         pass
     finally:
         _unsubscribe(queue)
+
+
+STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
+
+
+def _mount_frontend(app: FastAPI) -> None:
+    index = STATIC_DIR / "index.html"
+    if not index.is_file():
+        print("Frontend static not found (backend/static) — API-only mode")
+
+        @app.get("/")
+        def root_api_only():
+            return {
+                "message": "Kazakhtelecom Dashboard API",
+                "docs": "/docs",
+                "health": "/api/health",
+            }
+
+        return
+
+    app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="frontend")
+    print(f"Frontend static mounted from {STATIC_DIR}")
+
+
+_mount_frontend(app)
 
 
 if __name__ == "__main__":
