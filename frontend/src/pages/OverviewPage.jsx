@@ -24,6 +24,12 @@ export default function OverviewPage({ data }) {
           plan2026: r.plan2026,
           execution: r.execution
         }))} />
+        <TypeSummaryCard title="Топ спонсоров" items={data.sponsorStats.slice(0, 5).map((s) => ({
+          label: s.sponsor,
+          count: s.projects,
+          plan2026: s.plan2026,
+          execution: s.execution
+        }))} />
       </section>
     </div>
   );
@@ -35,7 +41,7 @@ function TypeSummaryCard({ title, items }) {
       <h3 className="mb-4 text-lg font-semibold text-slate-800">{title}</h3>
       <div className="space-y-3">
         {items.map((item) => (
-          <div key={item.type || item.label} className="flex items-center justify-between gap-3 text-sm">
+          <div key={item.type || item.label || item.sponsor} className="flex items-center justify-between gap-3 text-sm">
             <div>
               <div className="font-medium text-slate-700">{item.typeLabel || item.label}</div>
               <div className="text-xs text-slate-400">{item.count} проектов</div>

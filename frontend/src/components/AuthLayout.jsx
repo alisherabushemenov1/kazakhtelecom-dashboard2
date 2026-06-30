@@ -3,7 +3,7 @@ export function AuthLayout({ title, subtitle, children }) {
     <div className="flex min-h-screen items-center justify-center bg-[#eef2f7] px-4 py-10">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <img src="/logo.png" alt="Kazakhtelecom Project Management" className="mx-auto mb-4 h-24 object-contain" />
+          <img src="/logo.png" alt="Kazakhtelecom Project Management" className="mx-auto mb-4 h-28 object-contain" />
           <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0d3b7a]">Kazakhtelecom</div>
           <div className="text-sm font-medium text-[#1e6fd9]">Project Management</div>
           <h1 className="mt-4 text-2xl font-bold text-slate-900">{title}</h1>

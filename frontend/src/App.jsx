@@ -59,7 +59,6 @@ function DashboardApp() {
         onNavigate={setPage}
         user={user}
         onLogout={logout}
-        reportTitle={data.reportTitle}
         onRefresh={reload}
       />
 

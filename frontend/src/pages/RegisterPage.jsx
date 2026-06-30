@@ -6,7 +6,7 @@ import { AuthField, AuthLayout, authInputClass } from "../components/AuthLayout"
 export default function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
-  const [form, setForm] = useState({ fullName: "", email: "", password: "", phone: "" });
+  const [form, setForm] = useState({ fullName: "", email: "", password: "", confirmPassword: "", phone: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -17,6 +17,12 @@ export default function RegisterPage() {
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
+
+    if (form.password !== form.confirmPassword) {
+      setError("Пароли не совпадают");
+      return;
+    }
+
     setLoading(true);
     try {
       await register(form.fullName, form.email, form.password, form.phone);
@@ -32,7 +38,7 @@ export default function RegisterPage() {
     <AuthLayout title="Регистрация" subtitle="Создайте аккаунт для доступа к дашборду">
       <form onSubmit={handleSubmit} className="space-y-4">
         <AuthField label="ФИО">
-          <input className={authInputClass} value={form.fullName} onChange={(e) => update("fullName", e.target.value)} placeholder="Иванов Иван Иванович" required />
+          <input className={authInputClass} value={form.fullName} onChange={(e) => update("fullName", e.target.value)} placeholder="Ибраев Азамат Серикович" required />
         </AuthField>
         <AuthField label="Email">
           <input type="email" className={authInputClass} value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="name@company.kz" required />
@@ -42,6 +48,9 @@ export default function RegisterPage() {
         </AuthField>
         <AuthField label="Пароль">
           <input type="password" className={authInputClass} value={form.password} onChange={(e) => update("password", e.target.value)} placeholder="Минимум 6 символов" minLength={6} required />
+        </AuthField>
+        <AuthField label="Подтвердите пароль">
+          <input type="password" className={authInputClass} value={form.confirmPassword} onChange={(e) => update("confirmPassword", e.target.value)} placeholder="Введите пароль ещё раз" minLength={6} required />
         </AuthField>
 
         {error && <div className="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-600">{error}</div>}

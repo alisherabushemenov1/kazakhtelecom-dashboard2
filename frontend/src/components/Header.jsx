@@ -6,16 +6,15 @@ const PAGES = [
   { id: "detail", label: "Детализация" }
 ];
 
-export default function Header({ live, updatedAt, activePage, onNavigate, user, onLogout, reportTitle, onRefresh }) {
+export default function Header({ live, updatedAt, activePage, onNavigate, user, onLogout, onRefresh }) {
   return (
     <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-4 px-6 py-4 xl:flex-row xl:items-center xl:justify-between">
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Kazakhtelecom" className="h-12 w-auto object-contain" />
+          <img src="/logo.png" alt="Kazakhtelecom" className="h-16 w-auto object-contain" />
           <div>
             <div className="text-sm font-bold tracking-wide text-slate-900">KAZAKHTELECOM</div>
             <div className="text-xs font-semibold uppercase text-[#1e6fd9]">Project Management</div>
-            <div className="text-xs text-slate-400">{reportTitle || "Ход реализации проектов"}</div>
           </div>
         </div>
 
